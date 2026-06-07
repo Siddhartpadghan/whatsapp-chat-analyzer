@@ -10,7 +10,7 @@ def preprocess(data):
 
     df = pd.DataFrame({'message_date': dates, 'user_message': messages})
 
-    df['message_date'] = pd.to_datetime(df['message_date'], format='%d/%m/%y, %H:%M - ')
+    df['message_date'] = pd.to_datetime(df['message_date'], errors='coerce')
     df.rename(columns={'message_date': 'date'}, inplace=True)
 
     users = []
