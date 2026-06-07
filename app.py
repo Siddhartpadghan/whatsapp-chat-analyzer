@@ -89,10 +89,14 @@ if uploaded_file is not None:
 
         # Heatmap
         st.title("Weekly Heatmap")
-        user_heatmap = helper.activity_heatmap(selected_user, df)
-        fig, ax = plt.subplots()
-        ax = sns.heatmap(user_heatmap)
-        st.pyplot(fig)
+user_heatmap = helper.activity_heatmap(selected_user, df)
+
+if user_heatmap.empty:
+    st.write("No data available for heatmap")
+else:
+    fig, ax = plt.subplots()
+    sns.heatmap(user_heatmap, ax=ax)
+    st.pyplot(fig)
 
         # Wordcloud
         st.title("WordCloud")
