@@ -1,12 +1,8 @@
-from urlextract import URLExtract
+
 from wordcloud import WordCloud
 import pandas as pd
 from collections import Counter
 import emoji
-
-
-extract = URLExtract()
-
 
 def fetch_stats(selected_user,df):
 
@@ -26,9 +22,11 @@ def fetch_stats(selected_user,df):
     num_media_messages = df[df['message'] == '<Media omitted>\n'].shape[0]
 
     # fetch number of links shared
-    links = []
-    for message in df['message']:
-        links.extend(extract.find_urls(message))
+   import re
+
+links = []
+for message in df['message']:
+    links.extend(re.findall(r'https?://\S+', str(message)))
 
     return num_messages, len(words), num_media_messages, len(links)
 
