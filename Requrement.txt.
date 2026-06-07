@@ -4,5 +4,4 @@ matplotlib
 seaborn
 wordcloud
 emoji
-urlextract==1.9.0
 vaderSentiment
